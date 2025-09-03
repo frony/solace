@@ -58,11 +58,11 @@ export default function Home() {
 
   return (
     <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
+      <h1 className="text-xl md:text-3xl text-white font-bold bg-green-700 px-4 py-5 rounded-md">Solace Advocates</h1>
       <br />
       <br />
       <div>
-        <p>Search</p>
+        <p className="text-lg font-bold">Search</p>
         <p>
           Searching for: <span id="search-term"></span>
         </p>
@@ -73,13 +73,15 @@ export default function Home() {
       <br />
       <table>
         <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Degree</th>
-          <th>Specialties</th>
-          <th>Years of Experience</th>
-          <th>Phone Number</th>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>City</th>
+            <th>Degree</th>
+            <th>Specialties</th>
+            <th>Years of Experience</th>
+            <th>Phone Number</th>
+          </tr>
         </thead>
         <tbody>
           {filteredAdvocates.map((advocate) => {
