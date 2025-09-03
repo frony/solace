@@ -74,30 +74,30 @@ export default function Home() {
       <table>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>City</th>
-            <th>Degree</th>
-            <th>Specialties</th>
-            <th>Years of Experience</th>
-            <th>Phone Number</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">First Name</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">Last Name</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">City</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">Degree</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">Specialties</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">Years of Experience</th>
+            <th className="whitespace-nowrap text-xs md:text-sm px-2 md:px-4">Phone Number</th>
           </tr>
         </thead>
         <tbody>
-          {filteredAdvocates.map((advocate) => {
+          {filteredAdvocates.map((advocate, index) => {
             return (
-              <tr>
-                <td className="align-top">{advocate.firstName}</td>
-                <td className="align-top">{advocate.lastName}</td>
-                <td className="align-top">{advocate.city}</td>
-                <td className="align-top">{advocate.degree}</td>
+              <tr key={advocate.id} className={index % 2 === 0 ? "bg-gray-100" : "bg-gray-300"}>
+                <td className="align-top px-2 md:px-4">{advocate.firstName}</td>
+                <td className="align-top px-2 md:px-4">{advocate.lastName}</td>
+                <td className="align-top px-2 md:px-4">{advocate.city}</td>
+                <td className="align-top px-2 md:px-4">{advocate.degree}</td>
                 <td className="align-top">
                   {advocate.specialties.map((s: string, index: number) => (
                     <div key={index}>{s}</div>
                   ))}
                 </td>
-                <td className="align-top">{advocate.yearsOfExperience}</td>
-                <td className="align-top">{advocate.phoneNumber}</td>
+                <td className="align-top px-2 md:px-4">{advocate.yearsOfExperience}</td>
+                <td className="align-top px-2 md:px-4">{advocate.phoneNumber}</td>
               </tr>
             );
           })}
