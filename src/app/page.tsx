@@ -58,16 +58,16 @@ export default function Home() {
 
   return (
     <main style={{ margin: "24px" }}>
-      <h1 className="text-xl md:text-3xl text-white font-bold bg-green-700 px-4 py-5 rounded-md">Solace Advocates</h1>
-      <br />
-      <br />
+      <div className="w-full">
+        <h1 className="text-xl md:text-3xl text-white font-bold bg-green-700 px-4 py-5 rounded-md mb-8 w-full">Solace Advocates</h1>
+      </div>
       <div>
-        <p className="text-lg font-bold">Search</p>
-        <p>
+        <p className="text-lg md:text-2xl font-bold mb-2">Search</p>
+        <p className="text-sm md:text-lg">
           Searching for: <span id="search-term"></span>
         </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
+        <input style={{ border: "1px solid black" }} onChange={onChange} className="w-1/2 md:w-1/3" />
+        <button onClick={onClick} className="bg-green-700 text-white px-2 md:px-4 py-2 rounded-md ml-2 text-sm md:text-lg">Reset Search</button>
       </div>
       <br />
       <br />
@@ -87,17 +87,17 @@ export default function Home() {
           {filteredAdvocates.map((advocate) => {
             return (
               <tr>
-                <td>{advocate.firstName}</td>
-                <td>{advocate.lastName}</td>
-                <td>{advocate.city}</td>
-                <td>{advocate.degree}</td>
-                <td>
+                <td className="align-top">{advocate.firstName}</td>
+                <td className="align-top">{advocate.lastName}</td>
+                <td className="align-top">{advocate.city}</td>
+                <td className="align-top">{advocate.degree}</td>
+                <td className="align-top">
                   {advocate.specialties.map((s: string, index: number) => (
                     <div key={index}>{s}</div>
                   ))}
                 </td>
-                <td>{advocate.yearsOfExperience}</td>
-                <td>{advocate.phoneNumber}</td>
+                <td className="align-top">{advocate.yearsOfExperience}</td>
+                <td className="align-top">{advocate.phoneNumber}</td>
               </tr>
             );
           })}
