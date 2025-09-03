@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface Advocate {
   id: number;
@@ -17,6 +17,7 @@ interface Advocate {
 export default function Home() {
   const [advocates, setAdvocates] = useState<Advocate[]>([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     console.log("fetching advocates...");
@@ -54,6 +55,17 @@ export default function Home() {
   const onClick = () => {
     console.log(advocates);
     setFilteredAdvocates(advocates);
+    
+    // Clear the input field
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+    
+    // Clear the search term display
+    const searchTermElement = document.getElementById("search-term");
+    if (searchTermElement) {
+      searchTermElement.innerHTML = "";
+    }
   };
 
   return (
@@ -66,7 +78,7 @@ export default function Home() {
         <p className="text-sm md:text-lg">
           Searching for: <span id="search-term"></span>
         </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} className="w-1/2 md:w-1/3" />
+                  <input ref={inputRef} style={{ border: "1px solid black" }} onChange={onChange} className="w-1/2 md:w-1/3" />
         <button onClick={onClick} className="bg-green-700 text-white px-2 md:px-4 py-2 rounded-md ml-2 text-sm md:text-lg">Reset Search</button>
       </div>
       <br />
