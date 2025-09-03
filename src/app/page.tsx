@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+interface Advocate {
+  id: number;
+  firstName: string;
+  lastName: string;
+  city: string;
+  degree: string;
+  specialties: string[];
+  yearsOfExperience: number;
+  phoneNumber: number;
+  createdAt?: string;
+}
+
 export default function Home() {
-  const [advocates, setAdvocates] = useState([]);
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
+  const [advocates, setAdvocates] = useState<Advocate[]>([]);
+  const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate[]>([]);
 
   useEffect(() => {
     console.log("fetching advocates...");
@@ -16,10 +28,13 @@ export default function Home() {
     });
   }, []);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
 
-    document.getElementById("search-term").innerHTML = searchTerm;
+    const searchTermElement = document.getElementById("search-term");
+    if (searchTermElement) {
+      searchTermElement.innerHTML = searchTerm;
+    }
 
     console.log("filtering advocates...");
     const filteredAdvocates = advocates.filter((advocate) => {
@@ -28,8 +43,8 @@ export default function Home() {
         advocate.lastName.includes(searchTerm) ||
         advocate.city.includes(searchTerm) ||
         advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.includes(searchTerm)
+        advocate.specialties.some(specialty => specialty.includes(searchTerm)) ||
+        advocate.yearsOfExperience.toString().includes(searchTerm)
       );
     });
 
@@ -75,8 +90,8 @@ export default function Home() {
                 <td>{advocate.city}</td>
                 <td>{advocate.degree}</td>
                 <td>
-                  {advocate.specialties.map((s) => (
-                    <div>{s}</div>
+                  {advocate.specialties.map((s: string, index: number) => (
+                    <div key={index}>{s}</div>
                   ))}
                 </td>
                 <td>{advocate.yearsOfExperience}</td>
