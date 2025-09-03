@@ -74,7 +74,7 @@ export default function Home() {
       <div className="w-full">
         <h1 className="text-xl md:text-3xl text-white font-bold bg-green-700 px-4 py-5 rounded-md mb-8 w-full">Solace Advocates</h1>
       </div>
-      <div>
+      <div className="mb-8">
         <p className="text-lg md:text-2xl font-bold mb-2">Search</p>
         <p className="text-sm md:text-lg">
           Searching for: <span id="search-term"></span>
@@ -82,8 +82,6 @@ export default function Home() {
                   <input ref={inputRef} style={{ border: "1px solid black" }} onChange={onChange} className="w-1/2 md:w-1/3" />
         <button onClick={onClick} className="bg-green-700 text-white px-2 md:px-4 py-2 rounded-md ml-2 text-sm md:text-lg">Reset Search</button>
       </div>
-      <br />
-      <br />
       <table>
         <thead>
           <tr>
